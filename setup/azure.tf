@@ -39,10 +39,10 @@ resource "azurerm_role_assignment" "storage_account_contributor" {
 
 resource "azuread_application_federated_identity_credential" "plan" {
   application_id = azuread_application.hcp_terraform.id
-  display_name   = "hcp-terraform-my-workspace-oidc-plan"
+  display_name   = "${azuread_application.hcp_terraform.display_name}-plan"
   audiences      = ["api://AzureADTokenExchange"]
   issuer         = "https://app.terraform.io"
-  description    = "For HCP Terraform workspace 'my-workspace' plan operations"
+  description    = "For HCP Terraform plan operations"
   subject = join(":", [
     "organization",
     data.tfe_organization.current.name,
@@ -57,10 +57,10 @@ resource "azuread_application_federated_identity_credential" "plan" {
 
 resource "azuread_application_federated_identity_credential" "apply" {
   application_id = azuread_application.hcp_terraform.id
-  display_name   = "hcp-terraform-my-workspace-oidc-apply"
+  display_name   = "${azuread_application.hcp_terraform.display_name}-apply"
   audiences      = ["api://AzureADTokenExchange"]
   issuer         = "https://app.terraform.io"
-  description    = "For HCP Terraform workspace 'my-workspace' apply operations"
+  description    = "For HCP Terraform apply operations"
   subject = join(":", [
     "organization",
     data.tfe_organization.current.name,
