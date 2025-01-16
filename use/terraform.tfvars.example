@@ -1,2 +1,2 @@
-azure_subscription_id      = "your-azure-subscription-id"
-hcp_terraform_organization = "your-organization-name"
+azure_subscription_id = "your-azure-subscription-id"
+azure_tenant_id       = "your-azure-tenant-id" 

@@ -15,22 +15,6 @@ resource "tfe_variable_set" "azure" {
   name = "AZURE_OIDC"
 }
 
-resource "tfe_variable" "arm_subscription_id" {
-  key             = "ARM_SUBSCRIPTION_ID"
-  value           = data.azurerm_subscription.current.subscription_id
-  description     = "Azure subscription ID"
-  category        = "env"
-  variable_set_id = tfe_variable_set.azure.id
-}
-
-resource "tfe_variable" "arm_tenant_id" {
-  key             = "ARM_TENANT_ID"
-  value           = data.azurerm_subscription.current.tenant_id
-  description     = "Azure tenant ID"
-  category        = "env"
-  variable_set_id = tfe_variable_set.azure.id
-}
-
 resource "tfe_variable" "tfc_azure_run_client_id" {
   key             = "TFC_AZURE_RUN_CLIENT_ID"
   value           = azuread_service_principal.hcp_terraform.client_id
