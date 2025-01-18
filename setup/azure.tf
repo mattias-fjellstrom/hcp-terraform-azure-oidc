@@ -9,7 +9,7 @@ resource "azuread_service_principal" "hcp_terraform" {
 data "azurerm_subscription" "current" {}
 
 resource "azurerm_role_definition" "resource_group_creator" {
-  name  = "hcp-terraform"
+  name  = "Resource Group Creator"
   scope = data.azurerm_subscription.current.id
 
   permissions {
@@ -17,7 +17,6 @@ resource "azurerm_role_definition" "resource_group_creator" {
       "*/read",
       "Microsoft.Resources/subscriptions/resourceGroups/write",
     ]
-    not_actions = []
   }
 
   assignable_scopes = [
